@@ -1,7 +1,15 @@
 #pragma once
 #include "TinyDxEngine.h"
+#include "Singleton.h"
 
 using namespace std;
+
+enum
+{
+	INFO = 0,
+	WARN = 1,
+	ERR = 2
+};
 
 class Logger : public Singleton<Logger>
 {

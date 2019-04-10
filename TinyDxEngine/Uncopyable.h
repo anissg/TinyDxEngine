@@ -1,4 +1,6 @@
 #pragma once
+#include "TinyDxEngine.h"
+
 class Uncopyable
 {
 private:

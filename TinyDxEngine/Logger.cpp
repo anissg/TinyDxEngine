@@ -18,13 +18,13 @@ void Logger::Log(string message, int level)
 	string log_level;
 	switch (level)
 	{
-	case 0:
+	case INFO:
 		log_level = "Info";
 		break;
-	case 1:
+	case WARN:
 		log_level = "Warning";
 		break;
-	case 2:
+	case ERR:
 	default:
 		log_level = "Error";
 		break;
@@ -38,13 +38,13 @@ void Logger::Log(HRESULT hr, int level)
 	string log_level;
 	switch (level)
 	{
-	case 0:
+	case INFO:
 		log_level = "Info";
 		break;
-	case 1:
+	case WARN:
 		log_level = "Warning";
 		break;
-	case 2:
+	case ERR:
 	default:
 		log_level = "Error";
 		break;
