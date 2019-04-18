@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -72,11 +72,12 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>\TinyDxEngine.base;\TinyDxEngine.gfx;\TinyDxEngine.app;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)TinyDxEngine.app;$(SolutionDir)TinyDxEngine.base;$(SolutionDir)TinyDxEngine.gfx;$(SolutionDir)External\DirectXTK.lib\Inc;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Build\x64\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(SolutionDir)TinyDxEngine.app;$(SolutionDir)TinyDxEngine.base;$(SolutionDir)TinyDxEngine.gfx;$(SolutionDir)External\DirectXTK.lib\Inc;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -95,7 +96,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>DirectXTK.lib;imgui.lib;TinyDxEngine.base.lib;TinyDxEngine.gfx.lib;TinyDxEngine.app.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;DirectXTK.lib;imgui.lib;TinyDxEngine.base.lib;TinyDxEngine.gfx.lib;TinyDxEngine.app.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -109,7 +110,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>DirectXTK.lib;imgui.lib;TinyDxEngine.base.lib;TinyDxEngine.gfx.lib;TinyDxEngine.app.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;DirectXTK.lib;imgui.lib;TinyDxEngine.base.lib;TinyDxEngine.gfx.lib;TinyDxEngine.app.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

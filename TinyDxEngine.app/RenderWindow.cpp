@@ -1,28 +1,28 @@
 #include "pch.h"
-#include "RenderWindow.h"
+#include "EngineWindowsApp.h"
 
 
-bool RenderWindow::InitWindow(HINSTANCE hInstance, wstring title, wstring windowClass, int width, int height)
+bool RenderWindow::InitWindow(EngineWindowsApp* engineApp, HINSTANCE hInstance, wstring title, wstring windowClass, int width, int height)
 {
 	this->hInstance = hInstance;
 	this->title = title;
 	this->windowClass = windowClass;
 	this->width = width;
 	this->height = height;
-
+    this->engineApp = engineApp;
 	this->RegisterWindowClass();
 
 	this->handle = CreateWindowW(
 		this->windowClass.c_str(),
 		this->title.c_str(),
 		WS_OVERLAPPEDWINDOW,
-		0, 
-		0, 
-		this->width, 
-		this->height, 
-		nullptr, 
-		nullptr, 
-		this->hInstance, 
+		0,
+		0,
+		this->width,
+		this->height,
+		nullptr,
+		nullptr,
+		this->hInstance,
 		nullptr
 	);
 
@@ -63,6 +63,79 @@ bool RenderWindow::ProcessMessages()
 	return true;
 }
 
+HWND RenderWindow::GetWindow()
+{
+    return this->handle;
+}
+
+void RenderWindow::Quit()
+{
+    DestroyWindow(handle);
+}
+
+LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+{
+    switch (message)
+    {
+    case WM_ACTIVATEAPP:
+    {
+        Keyboard::ProcessMessage(message, wParam, lParam);
+        Mouse::ProcessMessage(message, wParam, lParam);
+    }
+    break;
+
+    case WM_SIZE:
+    {
+        // resize
+    }
+    break;
+
+    case WM_INPUT:
+    case WM_MOUSEMOVE:
+    case WM_LBUTTONDOWN:
+    case WM_LBUTTONUP:
+    case WM_RBUTTONDOWN:
+    case WM_RBUTTONUP:
+    case WM_MBUTTONDOWN:
+    case WM_MBUTTONUP:
+    case WM_MOUSEWHEEL:
+    case WM_XBUTTONDOWN:
+    case WM_XBUTTONUP:
+    case WM_MOUSEHOVER:
+        Mouse::ProcessMessage(message, wParam, lParam);
+        break;
+
+    case WM_KEYDOWN:
+    case WM_SYSKEYDOWN:
+    case WM_KEYUP:
+    case WM_SYSKEYUP:
+        Keyboard::ProcessMessage(message, wParam, lParam);
+        break;
+
+    case WM_HOTKEY:
+    {
+        switch (wParam)
+        {
+        case PRINTSCREEN:
+        {
+            // take a screenshot
+        }
+        break;
+        default:
+            break;
+        }
+    }
+    break;
+
+    case WM_DESTROY:
+        PostQuitMessage(0);
+        break;
+    default:
+        return DefWindowProc(hWnd, message, wParam, lParam);
+    }
+    return 0;
+}
+
 ATOM RenderWindow::RegisterWindowClass()
 {
 	WNDCLASSEXW wcex;
@@ -70,7 +143,7 @@ ATOM RenderWindow::RegisterWindowClass()
 	wcex.cbSize = sizeof(WNDCLASSEX);
 	
 	wcex.style = CS_HREDRAW | CS_VREDRAW;
-	wcex.lpfnWndProc = DefWindowProc;
+    wcex.lpfnWndProc = WndProc;
 	wcex.cbClsExtra = 0;
 	wcex.cbWndExtra = 0;
 	wcex.hInstance = this->hInstance;
