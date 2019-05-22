@@ -72,18 +72,23 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)TinyDxEngine.app;$(SolutionDir)TinyDxEngine.base;$(SolutionDir)TinyDxEngine.gfx;$(SolutionDir)External\DirectXTK.lib\Inc;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)External\DirectXTK.lib\Inc;$(SolutionDir)External\imgui.lib\Inc;$(SolutionDir)TinyDxEngine.app\Inc;$(SolutionDir)TinyDxEngine.base\Inc;$(SolutionDir)TinyDxEngine.gfx\Inc;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Build\x64\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)TinyDxEngine.app;$(SolutionDir)TinyDxEngine.base;$(SolutionDir)TinyDxEngine.gfx;$(SolutionDir)External\DirectXTK.lib\Inc;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)External\DirectXTK.lib\Inc;$(SolutionDir)External\imgui.lib\Inc;$(SolutionDir)TinyDxEngine.app\Inc;$(SolutionDir)TinyDxEngine.base\Inc;$(SolutionDir)TinyDxEngine.gfx\Inc;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Build\x86\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(SolutionDir)External\DirectXTK.lib\Inc;$(SolutionDir)External\imgui.lib\Inc;$(SolutionDir)TinyDxEngine.app\Inc;$(SolutionDir)TinyDxEngine.base\Inc;$(SolutionDir)TinyDxEngine.gfx\Inc;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Build\x86\Release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(SolutionDir)External\DirectXTK.lib\Inc;$(SolutionDir)External\imgui.lib\Inc;$(SolutionDir)TinyDxEngine.app\Inc;$(SolutionDir)TinyDxEngine.base\Inc;$(SolutionDir)TinyDxEngine.gfx\Inc;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Build\x64\Release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -92,6 +97,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -106,11 +112,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>d3d11.lib;DirectXTK.lib;imgui.lib;TinyDxEngine.base.lib;TinyDxEngine.gfx.lib;TinyDxEngine.app.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;DXGI.lib;DirectXTK.lib;imgui.lib;TinyDxEngine.base.lib;TinyDxEngine.gfx.lib;TinyDxEngine.app.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -122,6 +129,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -139,6 +147,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -148,7 +157,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\TinyDxEngine.app\Main.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="stdafx.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

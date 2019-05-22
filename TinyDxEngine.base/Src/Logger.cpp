@@ -1,12 +1,9 @@
-#include "pch.h"
 #include "Logger.h"
-
 
 Logger::Logger()
 {
 	log_file = ofstream("log.txt");
 }
-
 
 Logger::~Logger()
 {
