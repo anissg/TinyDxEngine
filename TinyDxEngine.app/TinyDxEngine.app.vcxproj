@@ -22,11 +22,13 @@
     <ClInclude Include="Inc\Engine.h" />
     <ClInclude Include="Inc\EngineWindowsApp.h" />
     <ClInclude Include="Inc\RenderWindow.h" />
+    <ClInclude Include="Inc\Timer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Engine.cpp" />
     <ClCompile Include="Src\EngineWindowsApp.cpp" />
     <ClCompile Include="Src\RenderWindow.cpp" />
+    <ClCompile Include="Src\Timer.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
