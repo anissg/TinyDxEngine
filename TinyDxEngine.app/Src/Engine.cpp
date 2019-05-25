@@ -5,12 +5,15 @@ using namespace DirectX::SimpleMath;
 
 bool Engine::Initialize(HINSTANCE hInstance, wstring title, wstring windowClass, int width, int height)
 {
-    bool init = this->renderWindow.InitWindow(this, hInstance, title, windowClass, width, height);
-    if (init)
-    {
-        mouse->SetWindow(renderWindow.GetWindow());
-    }
-    return init;
+    if (!this->renderWindow.InitWindow(this, hInstance, title, windowClass, width, height))
+        return false;
+    
+    mouse->SetWindow(renderWindow.GetWindow());
+    
+    if (!gfx.Initialize(renderWindow.GetWindow(), width, height))
+        return false;
+
+    return true;
 }
 
 void Engine::Run()
@@ -18,6 +21,8 @@ void Engine::Run()
     while (this->ProcessMessages())
     {
         this->UpdateInputs();
+        this->Update();
+        this->Render();
     }
 }
 
@@ -63,12 +68,23 @@ void Engine::UpdateInputs()
 
     mouse->SetMode(ms.leftButton ? Mouse::MODE_RELATIVE : Mouse::MODE_ABSOLUTE);
 
-    string s = "pitch: ";
+
+    // todo move this to logger
+    /*string s = "pitch: ";
 
     s += to_string(pitch);
     s += " , yaw: ";
     s += to_string(yaw);
     s += "\n";
-    OutputDebugStringA(s.c_str());
+    OutputDebugStringA(s.c_str());*/
+}
+
+void Engine::Update()
+{
+}
+
+void Engine::Render()
+{
+    gfx.RenderFrame();
 }
 

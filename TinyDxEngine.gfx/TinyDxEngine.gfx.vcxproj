@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="Inc\Adapters.h" />
     <ClInclude Include="Inc\Graphics.h" />
+    <ClInclude Include="Inc\Vertex.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Adapters.cpp" />

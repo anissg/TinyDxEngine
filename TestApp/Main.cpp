@@ -12,5 +12,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     // Ui configuration
     
 	engine.Initialize(/*config*/hInstance, L"TinyDXEngine", L"TDXEClass", 1280, 720);
-    engine.Run(/*App*/);
+    engine.Run();
+
+    return 0;
 }

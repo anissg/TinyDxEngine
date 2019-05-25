@@ -1,6 +1,7 @@
 #pragma once
 #include "RenderWindow.h"
 #include <d3d11.h>
+#include "Graphics.h"
 #include "SimpleMath.h"
 #include "GamePad.h"
 #include "Keyboard.h"
@@ -13,6 +14,7 @@ class EngineWindowsApp
 {
 protected:
     RenderWindow renderWindow;
+    Graphics gfx;
     unique_ptr<GamePad> gamePad;
     unique_ptr<Keyboard> keyboard;
     unique_ptr<Mouse> mouse;

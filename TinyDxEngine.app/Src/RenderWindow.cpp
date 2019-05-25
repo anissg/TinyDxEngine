@@ -40,14 +40,16 @@ bool RenderWindow::InitWindow(EngineWindowsApp* engineApp, HINSTANCE hInstance, 
 bool RenderWindow::ProcessMessages()
 {
 	MSG msg;
-	
-	if (GetMessage(&msg, this->handle, 0, 0))
+    ZeroMemory(&msg, sizeof(MSG));
+
+    while (PeekMessage(&msg, this->handle, 0, 0, PM_REMOVE))
 	{
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);
+
 	}
-	
-	if (msg.message == WM_NULL)
+
+    if (msg.message == WM_NULL)
 	{
 		if (!IsWindow(this->handle))
 		{
@@ -58,7 +60,7 @@ bool RenderWindow::ProcessMessages()
 			return false;
 		}
 	}
-
+	
 	return true;
 }
 

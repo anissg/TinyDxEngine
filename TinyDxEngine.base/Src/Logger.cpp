@@ -2,7 +2,7 @@
 
 Logger::Logger()
 {
-	log_file = ofstream("log.txt");
+	log_file = ofstream("log.txt", ios::out);
 }
 
 Logger::~Logger()
