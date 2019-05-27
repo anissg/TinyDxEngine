@@ -12,9 +12,9 @@ Timer::~Timer(void)
 }
 
 
-float Timer::GetElapsedTime(void)
+double Timer::GetElapsedTime()
 {
-    float elapsed;
+    double elapsed;
     if (m_dCurTime == 0 && m_dLastTime == 0)
     {
         m_dLastTime = timeGetTime();
@@ -27,14 +27,14 @@ float Timer::GetElapsedTime(void)
 }
 
 
-double Timer::GetCurrentTime(void)
+double Timer::GetCurrentTime()
 {
     m_dCurTime = timeGetTime();
     return m_dCurTime;
 }
 
 
-void Timer::Reset(void)
+void Timer::Reset()
 {
     m_dCurTime = m_dLastTime = 0;
 }

@@ -15,3 +15,5 @@
 
 #include "logger.h"
 #include "Engine.h"
+#include "Sprite.h"
+#include "DDSTextureLoader.h"

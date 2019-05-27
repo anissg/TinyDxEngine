@@ -5,10 +5,10 @@ class Engine: public EngineWindowsApp
 {
 
 public:
-    bool Initialize(HINSTANCE hInstance, wstring title, wstring windowClass, int width, int height);
+    virtual bool Initialize(HINSTANCE hInstance, wstring title, wstring windowClass, int width, int height);
     void Run();
     void UpdateInputs();
-    virtual void Update();
+    virtual void Update(double elapsedTime);
     virtual void Render();
 };
 

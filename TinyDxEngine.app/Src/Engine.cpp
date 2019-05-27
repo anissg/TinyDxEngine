@@ -13,6 +13,8 @@ bool Engine::Initialize(HINSTANCE hInstance, wstring title, wstring windowClass,
     if (!gfx.Initialize(renderWindow.GetWindow(), width, height))
         return false;
 
+    timer.Reset();
+
     return true;
 }
 
@@ -21,7 +23,7 @@ void Engine::Run()
     while (this->ProcessMessages())
     {
         this->UpdateInputs();
-        this->Update();
+        this->Update(timer.GetElapsedTime());
         this->Render();
     }
 }
@@ -79,7 +81,7 @@ void Engine::UpdateInputs()
     OutputDebugStringA(s.c_str());*/
 }
 
-void Engine::Update()
+void Engine::Update(double elapsedTime)
 {
 }
 

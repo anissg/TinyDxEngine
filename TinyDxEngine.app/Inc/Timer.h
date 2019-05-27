@@ -9,8 +9,7 @@ class Timer
 public:
     Timer(void);
     ~Timer(void);
-    float GetElapsedTime(void);
-    double GetCurrentTime(void);
-    void Reset(void);
-
-
+    double GetElapsedTime();
+    double GetCurrentTime();
+    void Reset(void);;
+};

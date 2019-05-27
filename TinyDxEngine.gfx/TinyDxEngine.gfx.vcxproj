@@ -22,8 +22,10 @@
     <ClInclude Include="Inc\Adapters.h" />
     <ClInclude Include="Inc\Graphics.h" />
     <ClInclude Include="Inc\Vertex.h" />
+    <ClInclude Include="Inc\Sprite.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Src\Sprite.cpp" />
     <ClCompile Include="Src\Adapters.cpp" />
     <ClCompile Include="Src\Graphics.cpp" />
   </ItemGroup>
@@ -81,24 +83,24 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir)..\External\imgui.lib\Inc;$(ProjectDir)..\External\DirectXTK.lib\Inc;$(ProjectDir)..\TinyDxEngine.base\Inc;$(ProjectDir)..\TinyDxEngine.gfx\Inc;$(ProjectDir)Inc;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)..\External\imgui.lib\Inc;$(ProjectDir)..\External\DirectXTK.lib\Inc;$(ProjectDir)..\TinyDxEngine.base\Inc;$(ProjectDir)..\TinyDxEngine.app\Inc;$(ProjectDir)Inc;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)Build\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Temp\TinyDxEngine.gfx\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir)..\External\imgui.lib\Inc;$(ProjectDir)..\External\DirectXTK.lib\Inc;$(ProjectDir)..\TinyDxEngine.base\Inc;$(ProjectDir)..\TinyDxEngine.gfx\Inc;$(ProjectDir)Inc;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)..\External\imgui.lib\Inc;$(ProjectDir)..\External\DirectXTK.lib\Inc;$(ProjectDir)..\TinyDxEngine.base\Inc;$(ProjectDir)..\TinyDxEngine.app\Inc;$(ProjectDir)Inc;$(IncludePath)</IncludePath>
     <LibraryPath>$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)Build\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Temp\TinyDxEngine.gfx\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir)..\External\imgui.lib\Inc;$(ProjectDir)..\External\DirectXTK.lib\Inc;$(ProjectDir)..\TinyDxEngine.base\Inc;$(ProjectDir)..\TinyDxEngine.gfx\Inc;$(ProjectDir)Inc;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)..\External\imgui.lib\Inc;$(ProjectDir)..\External\DirectXTK.lib\Inc;$(ProjectDir)..\TinyDxEngine.base\Inc;$(ProjectDir)..\TinyDxEngine.app\Inc;$(ProjectDir)Inc;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir)..\External\imgui.lib\Inc;$(ProjectDir)..\External\DirectXTK.lib\Inc;$(ProjectDir)..\TinyDxEngine.base\Inc;$(ProjectDir)..\TinyDxEngine.gfx\Inc;$(ProjectDir)Inc;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)..\External\imgui.lib\Inc;$(ProjectDir)..\External\DirectXTK.lib\Inc;$(ProjectDir)..\TinyDxEngine.base\Inc;$(ProjectDir)..\TinyDxEngine.app\Inc;$(ProjectDir)Inc;$(IncludePath)</IncludePath>
     <LibraryPath>..\External\build\DirectXTK.lib\x64\Release;..\External\build\imgui.lib\x64\Release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

@@ -1,5 +1,6 @@
 #pragma once
 #include "RenderWindow.h"
+#include "Timer.h"
 #include <d3d11.h>
 #include "Graphics.h"
 #include "SimpleMath.h"
@@ -14,6 +15,7 @@ class EngineWindowsApp
 {
 protected:
     RenderWindow renderWindow;
+    Timer timer;
     Graphics gfx;
     unique_ptr<GamePad> gamePad;
     unique_ptr<Keyboard> keyboard;

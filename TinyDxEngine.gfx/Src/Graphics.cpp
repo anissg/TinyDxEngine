@@ -15,15 +15,36 @@ void Graphics::RenderFrame()
     this->swapChain->Present(1, NULL);
 }
 
+shared_ptr<SpriteBatch> Graphics::GetSpriteBatch()
+{
+    return spriteBatch;
+}
+
+ID3D11Device* Graphics::GetDevice()
+{
+    return this->device.Get();
+}
+
 bool Graphics::InitializeDirectX(HWND hwnd, int width, int height)
 {
-    vector<AdapterData> adapters = Adapters::get ().GetAdapters();
+    vector<AdapterData> adapters = Adapters::get().GetAdapters();
 
     if (adapters.size() < 1)
     {
         Logger::get().Log("No DXGI adapters found.", ERR);
         return false;
     }
+
+    static const D3D_FEATURE_LEVEL s_featureLevels[] =
+    {
+        D3D_FEATURE_LEVEL_11_1,
+        D3D_FEATURE_LEVEL_11_0,
+        D3D_FEATURE_LEVEL_10_1,
+        D3D_FEATURE_LEVEL_10_0,
+        D3D_FEATURE_LEVEL_9_3,
+        D3D_FEATURE_LEVEL_9_2,
+        D3D_FEATURE_LEVEL_9_1,
+    };
 
     DXGI_SWAP_CHAIN_DESC scd;
     ZeroMemory(&scd, sizeof(DXGI_SWAP_CHAIN_DESC));
@@ -46,20 +67,23 @@ bool Graphics::InitializeDirectX(HWND hwnd, int width, int height)
     scd.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
     scd.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
 
+    D3D_FEATURE_LEVEL m_d3dFeatureLevel;
+
     HRESULT hr;
     hr = D3D11CreateDeviceAndSwapChain(
         adapters[0].pAdapter,
         D3D_DRIVER_TYPE_UNKNOWN,    //unspecified
-        NULL,                       //for soft driver type
-        NULL,
-        NULL,
-        0,
+        0,                       //for soft driver type
+        D3D11_CREATE_DEVICE_BGRA_SUPPORT,
+        s_featureLevels,
+        6,
         D3D11_SDK_VERSION,
-        &scd,                       //swapchain desc
-        this->swapChain.GetAddressOf(),
-        this->device.GetAddressOf(),
-        NULL,
-        this->deviceContext.GetAddressOf()
+        &s
+       cd,                       //swapchain desc
+        this->swapChain.ReleaseAndGetAddressOf(),
+        this->device.ReleaseAndGetAddressOf(),
+        &m_d3dFeatureLevel,
+        this->deviceContext.ReleaseAndGetAddressOf()
     );
 
     if (FAILED(hr))
@@ -87,11 +111,15 @@ bool Graphics::InitializeDirectX(HWND hwnd, int width, int height)
 
     return true;
 }
-
+bool Graphics::InitializeSpriteBatch()
+{
+    spriteBatch = make_shared<SpriteBatch>(deviceContext.Get());
+    return true;
+}
 bool Graphics::InitializeShaders()
 {
     D3D11_INPUT_ELEMENT_DESC layout[] =
-    {
+    
         {"POSITION", 0, DXGI_FORMAT::DXGI_FORMAT_R32G32_FLOAT, 0, 0, D3D11_INPUT_CLASSIFICATION::D3D11_INPUT_PER_VERTEX_DATA, 0  },
     };
 
