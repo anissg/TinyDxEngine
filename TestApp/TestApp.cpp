@@ -39,9 +39,11 @@ void TestApp::Update(double elapsedTime)
 
 void TestApp::Render()
 {
-    spriteBatch->Begin();
+    spriteBatch->Begin(SpriteSortMode_Deferred, gfx.GetStates()->NonPremultiplied());
     
     sprite.Render(spriteBatch);
 
     spriteBatch->End();
+
+    gfx.Present();
 }

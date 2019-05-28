@@ -70,7 +70,6 @@ void Engine::UpdateInputs()
 
     mouse->SetMode(ms.leftButton ? Mouse::MODE_RELATIVE : Mouse::MODE_ABSOLUTE);
 
-
     // todo move this to logger
     /*string s = "pitch: ";
 

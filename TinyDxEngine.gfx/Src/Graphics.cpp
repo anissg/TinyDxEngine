@@ -12,7 +12,7 @@ void Graphics::RenderFrame()
 {
     FLOAT clear_color[4] = { 0.0f, 0.0f, 0.0f, 1.0f };/*clearColor*/
     this->deviceContext->ClearRenderTargetView(this->renderTargetView.Get(), clear_color);
-    this->swapChain->Present(1, NULL);
+    this->Present();
 }
 
 shared_ptr<SpriteBatch> Graphics::GetSpriteBatch()
@@ -23,6 +23,11 @@ shared_ptr<SpriteBatch> Graphics::GetSpriteBatch()
 ID3D11Device* Graphics::GetDevice()
 {
     return this->device.Get();
+}
+
+shared_ptr<CommonStates> Graphics::GetStates()
+{
+    return this->states;
 }
 
 bool Graphics::InitializeDirectX(HWND hwnd, int width, int height)
@@ -78,8 +83,7 @@ bool Graphics::InitializeDirectX(HWND hwnd, int width, int height)
         s_featureLevels,
         6,
         D3D11_SDK_VERSION,
-        &s
-       cd,                       //swapchain desc
+        &scd,                       //swapchain desc
         this->swapChain.ReleaseAndGetAddressOf(),
         this->device.ReleaseAndGetAddressOf(),
         &m_d3dFeatureLevel,
@@ -109,17 +113,34 @@ bool Graphics::InitializeDirectX(HWND hwnd, int width, int height)
 
     this->deviceContext->OMSetRenderTargets(1, this->renderTargetView.GetAddressOf(), NULL);
 
+    CD3D11_VIEWPORT screenViewport(
+        0.0f,
+        0.0f,
+        static_cast<float>(width),
+        static_cast<float>(height)
+    );
+
+    this->deviceContext->RSSetViewports(1, &screenViewport);
+
     return true;
 }
+
 bool Graphics::InitializeSpriteBatch()
 {
     spriteBatch = make_shared<SpriteBatch>(deviceContext.Get());
+    states = make_shared<CommonStates>(device.Get());
     return true;
 }
+
+void Graphics::Present()
+{
+    this->swapChain->Present(1, 0);
+}
+
 bool Graphics::InitializeShaders()
 {
     D3D11_INPUT_ELEMENT_DESC layout[] =
-    
+    {
         {"POSITION", 0, DXGI_FORMAT::DXGI_FORMAT_R32G32_FLOAT, 0, 0, D3D11_INPUT_CLASSIFICATION::D3D11_INPUT_PER_VERTEX_DATA, 0  },
     };
 

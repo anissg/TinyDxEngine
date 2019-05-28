@@ -1,6 +1,7 @@
 #pragma once
 #include <wrl/client.h>
 #include <d3d11.h>
+#include <CommonStates.h>
 #include <SpriteBatch.h>
 
 using namespace std;
@@ -12,9 +13,11 @@ class Graphics
 public:
     bool Initialize(HWND hwnd, int width, int height);
     bool InitializeSpriteBatch();
+    void Present();
     void RenderFrame();
     shared_ptr<SpriteBatch> GetSpriteBatch();
     ID3D11Device* GetDevice();
+    shared_ptr<CommonStates> GetStates();
 protected:
     bool InitializeDirectX(HWND hwnd, int width, int height);
     bool InitializeShaders();
@@ -27,4 +30,5 @@ protected:
     ComPtr<ID3D10Blob> vertex_shader_buffer;
 
     shared_ptr<SpriteBatch> spriteBatch;
+    shared_ptr<CommonStates> states;
 };
