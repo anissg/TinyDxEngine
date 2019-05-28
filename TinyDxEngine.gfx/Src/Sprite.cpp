@@ -1,7 +1,8 @@
 #include "Sprite.h"
 
-Sprite::Sprite() : position(0, 0), origin(0, 0), rotation(0), scale(1)
+Sprite::Sprite() : origin(0, 0), rotation(0), scale(1)
 {
+    position = XMVectorSet(0, 0, 0, 0);
 }
 
 Sprite::Sprite(ID3D11ShaderResourceView* texture) : Sprite()
@@ -23,12 +24,12 @@ ID3D11ShaderResourceView* Sprite::GetTexture()
     return this->texture;
 }
 
-void Sprite::SetPosition(XMFLOAT2 position)
+void Sprite::SetPosition(XMVECTOR position)
 {
     this->position = position;
 }
 
-XMFLOAT2 Sprite::GetPosition()
+XMVECTOR Sprite::GetPosition()
 {
     return position;
 }
@@ -65,6 +66,7 @@ float Sprite::GetScale()
 
 void Sprite::Render(shared_ptr<SpriteBatch> spriteBatch)
 {
+    XMFLOAT2 position(XMVectorGetX(position), XMVectorGetY(position));
     spriteBatch->Draw(texture, position, nullptr, Colors::White, rotation, origin, scale);
 }
 

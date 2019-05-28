@@ -27,7 +27,7 @@ bool TestApp::Initialize(HINSTANCE hInstance, wstring title, wstring windowClass
     sprite.SetOrigin(XMFLOAT2(catDesc.Width / 2, catDesc.Height / 2));
     sprite.SetScale(1);
     sprite.SetRotation(0);
-    sprite.SetPosition(XMFLOAT2(100,100));
+    sprite.SetPosition(XMVectorSet(100, 100, 0, 0));
 
     return true;
 }

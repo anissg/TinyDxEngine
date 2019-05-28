@@ -13,7 +13,7 @@ using namespace Microsoft::WRL;
 class Sprite
 {
     ID3D11ShaderResourceView* texture;
-    XMFLOAT2 position;
+    XMVECTOR position;
     XMFLOAT2 origin;
     float rotation;
     float scale;
@@ -23,8 +23,8 @@ public:
     ~Sprite();
     void SetTexture(ID3D11ShaderResourceView* texture);
     ID3D11ShaderResourceView* GetTexture();
-    void SetPosition(XMFLOAT2 position);
-    XMFLOAT2 GetPosition();
+    void SetPosition(XMVECTOR position);
+    XMVECTOR GetPosition();
     void SetOrigin(XMFLOAT2 origin);
     XMFLOAT2 GetOrigin();
     void SetRotation(float angle);
