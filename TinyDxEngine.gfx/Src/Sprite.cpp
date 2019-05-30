@@ -14,9 +14,13 @@ Sprite::~Sprite()
 {
 }
 
-void Sprite::SetTexture(ID3D11ShaderResourceView* texture)
+void Sprite::SetTexture(ID3D11ShaderResourceView* texture, ID3D11Texture2D* resource)
 {
     this->texture = texture;
+    CD3D11_TEXTURE2D_DESC catDesc;
+    resource->GetDesc(&catDesc);
+    this->SetOrigin(XMFLOAT2(catDesc.Width / 2, catDesc.Height / 2));
+    this->size = XMFLOAT2(catDesc.Width, catDesc.Height);
 }
 
 ID3D11ShaderResourceView* Sprite::GetTexture()
@@ -62,6 +66,11 @@ void Sprite::SetScale(float scale)
 float Sprite::GetScale()
 {
     return scale;
+}
+
+XMFLOAT2 Sprite::GetSize()
+{
+    return this->size;
 }
 
 void Sprite::Render(shared_ptr<SpriteBatch> spriteBatch)

@@ -14,6 +14,7 @@ class Sprite
 {
     ID3D11ShaderResourceView* texture;
     XMVECTOR position;
+    XMFLOAT2 size;
     XMFLOAT2 origin;
     float rotation;
     float scale;
@@ -21,7 +22,7 @@ public:
     Sprite();
     Sprite(ID3D11ShaderResourceView* texture);
     ~Sprite();
-    void SetTexture(ID3D11ShaderResourceView* texture);
+    void SetTexture(ID3D11ShaderResourceView* texture, ID3D11Texture2D* resource);
     ID3D11ShaderResourceView* GetTexture();
     void SetPosition(XMVECTOR position);
     XMVECTOR GetPosition();
@@ -31,6 +32,7 @@ public:
     float GetRotation();
     void SetScale(float scale);
     float GetScale();
+    XMFLOAT2 GetSize();
     void Render(shared_ptr<SpriteBatch> spriteBatch);
 };
 

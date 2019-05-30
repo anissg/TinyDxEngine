@@ -19,12 +19,10 @@ bool TestApp::Initialize(HINSTANCE hInstance, wstring title, wstring windowClass
 
     spriteBatch = gfx.GetSpriteBatch();
 
-    sprite.SetTexture(texture.Get());
     ComPtr<ID3D11Texture2D> cat;
     resource.As(&cat);
-    CD3D11_TEXTURE2D_DESC catDesc;
-    cat->GetDesc(&catDesc);
-    sprite.SetOrigin(XMFLOAT2(catDesc.Width / 2, catDesc.Height / 2));
+    sprite.SetTexture(texture.Get(), cat.Get());
+   
     sprite.SetScale(1);
     sprite.SetRotation(0);
     sprite.SetPosition(XMVectorSet(100, 100, 0, 0));
