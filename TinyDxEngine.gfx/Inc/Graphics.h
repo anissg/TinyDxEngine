@@ -1,6 +1,7 @@
 #pragma once
 #include <wrl/client.h>
 #include <d3d11.h>
+#include <DirectXColors.h>
 #include <CommonStates.h>
 #include <SpriteBatch.h>
 
@@ -13,6 +14,7 @@ class Graphics
 public:
     bool Initialize(HWND hwnd, int width, int height);
     bool InitializeSpriteBatch();
+    void Clear(XMVECTORF32 color);
     void Present();
     void RenderFrame();
     shared_ptr<SpriteBatch> GetSpriteBatch();

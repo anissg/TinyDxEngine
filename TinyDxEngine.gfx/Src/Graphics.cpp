@@ -132,6 +132,11 @@ bool Graphics::InitializeSpriteBatch()
     return true;
 }
 
+void Graphics::Clear(XMVECTORF32 color)
+{
+    this->deviceContext->ClearRenderTargetView(this->renderTargetView.Get(), color);
+}
+
 void Graphics::Present()
 {
     this->swapChain->Present(1, 0);

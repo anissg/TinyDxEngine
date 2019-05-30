@@ -17,3 +17,4 @@
 #include "Engine.h"
 #include "Sprite.h"
 #include "DDSTextureLoader.h"
+#include "DirectXColors.h"
